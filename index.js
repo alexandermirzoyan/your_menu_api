@@ -4,10 +4,21 @@ const app = express();
 mongoose.connect('mongodb://localhost/YourMenu', {useNewUrlParser: false});
 const Schema = mongoose.Schema;
 
-const MyModel = mongoose.model('menuList', new Schema({name: String}, {collection: 'menuList'}));
+const EntitiesModel = mongoose.model('entities', new Schema({name: String}, {collection: 'entities'}));
+const MenuListModel = mongoose.model('menuList', new Schema({name: String}, {collection: 'menuList'}));
 
 app.get('/', (req, res) => {
-  MyModel.find((error, result) => {
+  res.send('Unauthorized');
+});
+
+app.get('/Entities', (req, res) => {
+  EntitiesModel.find((error, result) => {
+    res.send(result);
+  });
+});
+
+app.get('/MenuItems', (req, res) => {
+  MenuListModel.findOne({entityId: req.query.entity}, (error, result) => {
     res.send(result);
   });
 });
