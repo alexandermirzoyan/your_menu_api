@@ -16,6 +16,7 @@ app.use(cors({
   }
 }));
 app.use(express.json());
+app.use(express.static(__dirname + "/media/images"));
 
 app.get('/', (req, res) => {
   res.send('Unauthorized');
