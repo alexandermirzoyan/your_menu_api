@@ -37,6 +37,7 @@ app.get('/MenuItems', (req, res) => {
 });
 
 app.post('/SetOrder', (req, res) => {
+  const { order, tableNumber } = req.body;
   const transporter = nodemailer.createTransport({
     service: "gmail",
     port: 465,
@@ -56,8 +57,8 @@ app.post('/SetOrder', (req, res) => {
   const mailOptions = {
     from: "alexandr.mirz12@gmail.com",
     to: ["alexandr.mirz12@gmail.com"],
-    subject: `Պատվեր 12րդ սեղանից`,
-    text: 'ասդասդադս',
+    subject: `Պատվեր ${tableNumber} սեղանից`,
+    text: order,
   };
 
   transporter.sendMail(mailOptions, (err, data) => {
@@ -66,7 +67,7 @@ app.post('/SetOrder', (req, res) => {
         .status(200)
         .send({
           resultCode: 1,
-          result: "Պատվերը հաստատվեց!"
+          result: "Ձեր պատվերը հաստատվեց, շնորհակալություն"
         });
     }
     else {
