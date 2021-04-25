@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const nodemailer = require("nodemailer");
+const secrets = require("./secrets");
 
 const app = express();
 mongoose.connect('mongodb://localhost/YourMenu', {useNewUrlParser: false});
@@ -44,15 +45,10 @@ app.post('/SetOrder', (req, res) => {
     secure: true,
     auth: {
       // type: "OAuth2",
-      user: "alexandr.mirz12@gmail.com",// process.env.EMAIL
-      pass: "Alzapet.032002",
-      /*clientId: "1051223923501-3idpg2pfd02buqpu4ipfkdnugsn2p6k6.apps.googleusercontent.com", // process.env.CLIENT_ID
-      clientSecret: "6tbHBKPffODnoAPAGwaHg78D", // process.env.CLIENT_SECRET
-      refreshToken: "1//0fV3ZhQSi5mYwCgYIARAAGA8SNwF-L9IrcPK9PSKabLFmyO6-Fs3WOKqKAp2DNv0uVxZ7tz_B-iNLByJTVl0jX_iqv1jTqinYXzY", // process.env.REFRESH_TOKEN*/
+      user: secrets.USER,
+      pass: secrets.PASS,
     },
-  }, /*{
-    rejectUnauthorized: false
-  }*/);
+  });
 
   const mailOptions = {
     from: "alexandr.mirz12@gmail.com",
