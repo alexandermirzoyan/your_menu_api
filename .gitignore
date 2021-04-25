@@ -1,4 +1,4 @@
-./.idea
+.idea/
 
 # Logs
 logs
@@ -119,3 +119,5 @@ dist
 
 package-lock.json
 yarn.lock
+
+secrets.js
