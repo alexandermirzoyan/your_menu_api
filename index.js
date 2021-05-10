@@ -69,8 +69,8 @@ app.post('/SetOrder', (req, res) => {
     else {
       console.log(err);
       res
-        .send(200)
-        .status({
+        .status(200)
+        .send({
           resultCode: 2,
           result: "Կապի խնդիր"
         })
